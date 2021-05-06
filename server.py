@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify, flash
 from flask_bootstrap import Bootstrap
 import boto3
 # import requests 
@@ -16,6 +16,7 @@ s3_resource = boto3.resource(
 
 app = Flask(__name__)
 Bootstrap(app)
+app.secret_key = 'pickles'
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['file_type'] = file_type
 
@@ -30,13 +31,27 @@ def homepage():
 
 @app.route('/files')
 def files():
+    """Connects with S3 and displays (allfiles in S3) information on page"""
     s3_resource = boto3.resource('s3')
     my_bucket = s3_resource.Bucket(S3_BUCKET)
     summaries = my_bucket.objects.all()
     #s3 down - what to do --- for tests#### try s3.myburckst.all except s3 render dif. template service unavialble
     return render_template('files.html', my_bucket=my_bucket, files=summaries)
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    """Upload an image to S3"""
+    #the dict will contain a key 'file' which is same on input form -- this is a FileStorage object from Werkzeug
+    file = request.files['file']
 
+    s3_resource = boto3.resource('s3')
+    my_bucket = s3_resource.Bucket(S3_BUCKET)
+    my_bucket.Object(file.filename).put(Body=file)
+
+    flash('Photo uploaded successfully!')
+    return redirect(url_for('files'))
+
+    
 # @app.route('/login')
 # def login():
 #     """User login page"""
