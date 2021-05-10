@@ -2,11 +2,38 @@
 {% block title %} AESTHETICA {% endblock %}
 
 {% block navbar %}
-<div class='navbar navbar-fixed-top'>
-    
-</div>
+  <div class='navbar navbar-fixed-top'>
+  </div>
+
+  <div> 
+    <img src="https://riverbeats.life/wp-content/uploads/2017/05/purple-feature.jpg" alt="vaporwater" style="width:100%"> 
+  </div>
+
+  <link rel="stylesheet" href="/static/style.css">
 {% endblock %}
 
 {% block content %}
-    <h1> AESTHETICA  </h1>
+    
+      
+
+        <div class="container">
+          <div class='row'>
+            <div class="col-12-xs">   
+              <h1> AESTHETICA  </h1>     
+      <hr>
+                <form action="/login" method="POST">
+                  <button type="submit" class="btn">Login</button>
+                </form>
+          
+      <hr>
+
+                <form action="/register1">
+                  <button type="submit" class="btn">Register</button>
+                </form>    
+            </div>
+          </div>
+        </div>
+
+      <hr> 
+
 {% endblock %}

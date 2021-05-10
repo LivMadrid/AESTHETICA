@@ -1,0 +1,49 @@
+{%extends 'bootstrap/base.html'%}
+{% block title %} AESTHETICA {% endblock %}
+
+{% block navbar %}
+<div class='navbar navbar-fixed-top'>
+</div>
+  
+<div> 
+  <img src="https://riverbeats.life/wp-content/uploads/2017/05/purple-feature.jpg" alt="vaporwater" style="width:100%"> 
+</div>
+  
+<link rel="stylesheet" href="/static/style.css">
+{% endblock %}
+
+
+{% block content %}
+    
+      <div class="container">
+        <div class='row'>
+          <div class="col-12-xs">
+            <h1> AESTHETICA  </h1>
+    
+
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <p class="bg-info" style="padding: 15 px;">
+                    {% for message in messages %}
+                      {{message}} <br>
+                    {% endfor %}
+                  </p>
+                {% endif %}
+              {% endwith %}
+    <hr>
+              <div>
+                <form action="/login" method="POST">
+                  <input type="username" class='form-control' name="username" placeholder="Enter your Username">
+                  <input type="password" name="password" placeholder="Enter your Password">
+    <hr>
+                  <button type="submit" class="btn">Login</button>
+                </form>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+    <hr> 
+
+{% endblock %}

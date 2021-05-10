@@ -4,54 +4,67 @@
 
 {% block navbar %}
 <div class="navbar navbar-fixed-top">
-  <!-- ... -->
 </div>
+
+<div> 
+  <img src="https://riverbeats.life/wp-content/uploads/2017/05/purple-feature.jpg" alt="vaporwater" style="width:100%">
+</div>
+
+<link rel="stylesheet" href="/static/style.css">
+
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <div class='row'>
-        <div class="col-12-xs">
-        <h3>Bucket Info</h3>
-        <p>Created: {{ my_bucket.creation_date | datetimeformat }}</p>
-        
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <p class="bg-info" style="padding: 15 px;">
-              {% for message in messages %}
-                {{message}} <br>
-              {% endfor %}
-              </p>
-            {% endif %}
-          {% endwith %}
-        
-        
-        
-        <hr>
-        
     
-        <form class="upload-form" action="{{ url_for ('upload')}}" method="POST" enctype="multipart/form-data">
-            <p><input type="file" name="file"></p>
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form> 
-        <hr> 
+      <div class="container">
+        <div class='row'>
+          <div class="col-12-xs">
+            <h1>AESTHETICA STORAGE</h1>
+            <!-- <h2>Welcome {{username}}</h2> -->
+              <p>Created: {{ my_bucket.creation_date | datetimeformat }}</p>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <p class="bg-info" style="padding: 15 px;">
+                      {% for message in messages %}
+                        {{message}} <br>
+                      {% endfor %}
+                    </p>
+                  {% endif %}
+                {% endwith %}
         
+    <hr>
+        
+                <form class="upload-form" action="{{ url_for ('upload_image')}}" method="POST" enctype="multipart/form-data">
+                  <p><input type="file" name="file"></p>
+                  <button type="submit" class="btn">Upload Image</button>
+                </form> 
 
-        <table class='table table-striped'>
-            <tr>
-                <th>filename</th>
-                <th>last modified</th>
-                <th>file type</th>
-            </tr>
-            {% for f in files %}
-            <tr>
-                <td>{{f.key}}</td>
-                <td>{{f.last_modified | datetimeformat}}</td>
-                <td>{{f.key | file_type}}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    <hr> 
+    
+                <table class='table table-striped'>
+                  <tr>
+                    <th>image name</th>
+                    <th>last modified</th>
+                    <th>image type</th>
+                    <th>delete image</th>
+                  </tr>
+                  {% for f in files %}
+                  <tr>
+                    <td>{{f.key}}</td>
+                    <td>{{f.last_modified | datetimeformat}}</td>
+                    <td>{{f.key | file_type}}</td>
+                    <td> 
+                      <form class="delete-form" action="{{url_for('delete_image')}}" method="POST">
+                        <input type="hidden" name="key" value="{{ f.key }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete Image</button>
+                      </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+          </div>
         </div>
-    </div>
-  </div>
+      </div>
+    <hr>
+
 {% endblock %}

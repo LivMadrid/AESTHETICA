@@ -1,0 +1,49 @@
+{%extends 'bootstrap/base.html'%}
+{% block title %} AESTHETICA {% endblock %}
+
+{% block navbar %}
+<div class='navbar navbar-fixed-top'>
+</div>
+
+<div> 
+  <img src="https://riverbeats.life/wp-content/uploads/2017/05/purple-feature.jpg" alt="vaporwater" style="width:100%"> 
+</div>
+
+<link rel="stylesheet" href="/static/style.css">
+{% endblock %}
+
+{% block content %}
+    
+      <div class="container">
+        <div class='row'>
+          <div class="col-12-xs">
+            <h1> AESTHETICA  </h1>
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <p class="bg-info" style="padding: 15 px;">
+                    {% for message in messages %}
+                      {{message}} <br>
+                    {% endfor %}
+                  </p>
+                {% endif %}
+              {% endwith %}
+    <hr>
+            <h2> Register Here</h2>
+              <form action="/login" method="POST">
+                <div class='container'>
+                  <input type="username" class='form-control' name="username" placeholder="Enter your Username" required>
+                  <input type="fname" class='form-control' name="fname" placeholder="Enter your first name" required>
+                  <input type="lname" class='form-control' name="lname" placeholder="Enter your last name" required>
+                  <input type="email" class='form-control' name="email" placeholder="Enter your email" required>
+                  <input type="password" class='form-control' name="password" placeholder="Enter your password" required>
+    <hr>
+                  <button type="submit" class="btn">Register</button>
+                </div>
+              </form> 
+          </div>
+        </div>
+      </div> 
+    
+    <hr> 
+
+{% endblock %}

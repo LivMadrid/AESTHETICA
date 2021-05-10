@@ -1,0 +1,29 @@
+BUGS:
+
+TO DO:
+-Fix the flashing messages on login page ("incorrect username or password") before user has signed in
+-password encryption
+-presigned url requires bucket_name to be a string on .env/config file  but causes all other functions related to S3 : files upload/delete/ display to not work
+
+
+IMPROVEMENTS: 
+
+Testing:
+Complete tests on 
+app.route /upload, /login, /delete, /files
+
+S3 Integration with database:
+-Integrate S3 with Image class in sql database
+-Get presigned_url functions to render correctly 
+-enable users to be able to view all of their images (not whole S3 bucket) using sessions
+-enable users to delete their images, but not others
+-securely upload with presigned_urls 
+-change aws persmissions back to private with user access through presigned_urls
+
+Frontend:
+-Appeal more to the vaporwave aesthetic: fonts, 90s buttons/windows, purple/pink/turquoise hues, audio?
+-add js/jquery/ajax for more responsive pages
+-add share/like buttons/comments 
+
+
+

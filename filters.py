@@ -4,12 +4,13 @@ import mimetypes
 
 
 def datetimeformat(date_str):
+    """Uses arrow to format datetime into an accesible human context"""
     datetime = arrow.get(date_str)
     #formats into real time
     return datetime.humanize()
 
 def file_type(key):
-    
+    """Defines file type"""
     #splits off file_extension (becasue file not stored locally --> returns a tuple (main file name, extension)
     file_name = os.path.splitext(key)
     file_extension = file_name[1]

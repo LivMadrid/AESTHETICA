@@ -1,0 +1,53 @@
+{%extends 'bootstrap/base.html'%}
+{% block title %} AESTHETICA {% endblock %}
+
+{% block navbar %}
+<div class='navbar navbar-fixed-top'>
+</div>
+
+<div> 
+  <img src="https://riverbeats.life/wp-content/uploads/2017/05/purple-feature.jpg" alt="vaporwater" style="width:100%"> 
+</div>
+
+<link rel="stylesheet" href="/static/style.css">
+{% endblock %}
+
+{% block content %}
+    
+      <div class="container">
+        <div class='row'>
+          <div class="col-12-xs">
+            <h1> AESTHETICA  </h1>
+    <hr>
+              <p> Welcome {{username}}</p>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <p class="bg-info" style="padding: 15 px;">
+                      {% for message in messages %}
+                        {{message}} <br>
+                      {% endfor %}
+                    </p>
+                  {% endif %}
+                {% endwith %}
+
+                <label>Upload your photos here</label>
+                  <div>
+                    <form action="/files" method="GET">
+                      <button type="submit" class="btn">upload</button>
+                    </form>
+                  </div> 
+    <hr>
+
+    <!-- Photos would display here with bootstrap cards -->
+                  <div>
+                    <form action="/">
+                      <button type="submit" class="btn">logout</button>
+                    </form>
+                  </div>
+          </div>
+        </div>
+      </div>
+
+    <hr>
+
+{% endblock %}
